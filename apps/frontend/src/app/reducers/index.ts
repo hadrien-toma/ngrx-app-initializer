@@ -20,15 +20,3 @@ export interface State {
 export const reducers = new InjectionToken<ActionReducerMap<FeatureState, Action>>('frontend', {
 	factory: () => ({ appInitializer })
 });
-
-export function failureLogger(reducer: ActionReducer<any>): ActionReducer<any> {
-	return function <T>(state, action: { type: string; [key: string]: any }) {
-		const isFailureAction = action.type.endsWith('failure') || action.type.endsWith('Failure');
-		if (isFailureAction) {
-			console.error({ ...action });
-		}
-		return reducer(state, action);
-	};
-}
-
-export const metaReducers: MetaReducer<{}>[] = [failureLogger];
