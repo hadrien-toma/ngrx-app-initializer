@@ -1,22 +1,17 @@
 import { InjectionToken } from '@angular/core';
-import { Params } from '@angular/router';
-import { Action, ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { Action, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { appInitializer, AppInitializer } from './app-initializer/index.reducer';
-
-export interface RouterStateSnapshot {
-	params: Params;
-	queryParams: Params;
-	url: string;
-}
+import { other, Other } from './other/index.reducer';
 
 export interface FeatureState {
 	appInitializer: AppInitializer;
+	other: Other;
 }
 
 export interface State {
-	['frontend']: FeatureState;
+	frontend: FeatureState;
 }
 
 export const reducers = new InjectionToken<ActionReducerMap<FeatureState, Action>>('frontend', {
-	factory: () => ({ appInitializer })
+	factory: () => ({ appInitializer, other })
 });

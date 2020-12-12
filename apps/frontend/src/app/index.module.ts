@@ -27,7 +27,7 @@ import { reducers } from './reducers';
 	providers: [
 		{
 			provide: APP_INITIALIZER,
-			useFactory: (store: Store<{}>) => () => store.dispatch(µAppInitializerEntered({ config: { } })),
+			useFactory: (store: Store<{}>) => () => store.dispatch(µAppInitializerEntered()),
 			multi: true,
 			deps: [Store]
 		}
