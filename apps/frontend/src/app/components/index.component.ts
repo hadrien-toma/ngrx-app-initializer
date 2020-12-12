@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { $feature } from '../selectors';
+import { $appInitializer, $appInitializerStatus } from '../selectors';
 import { tap } from 'rxjs/operators'
 
 @Component({
@@ -10,8 +10,11 @@ import { tap } from 'rxjs/operators'
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IndexComponent {
-	feature$ = this.store.pipe(select($feature), tap(feature => {
-		console.log({ feature })
+	appInitializer$ = this.store.pipe(select($appInitializer), tap(appInitializer => {
+		console.log({ appInitializer })
+	}))
+	appInitializerStatus$ = this.store.pipe(select($appInitializerStatus), tap(appInitializerStatus => {
+		console.log({ appInitializerStatus })
 	}))
 
 	constructor(private store: Store<{}>) {
